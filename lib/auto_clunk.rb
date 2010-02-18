@@ -37,7 +37,9 @@ module Clunk
       @cli = Clunk.CLI.new(p, self)
     end
 
-    # Run the CLI. Name choosen for uniqueness. You won't need to use this.
+    # Run the CLI. Name choosen for uniqueness. You won't need to use this. This includes
+    # some redimentry exception handling for ArgumentError so you are safe from imporoper 
+    # argument numbers.
     def activate_awesomeness
       begin
         @cli.go
@@ -48,7 +50,7 @@ module Clunk
     end
 
     # The method used to alert the module to the name of your class. Uses
-    # at_exit to do it's magic.
+    # at_exit to do it's magic. I bet there are better ways of doing this.
     def self.goes name
       at_exit {
         eval("#{name.to_s}.new.activate_awesomeness")
