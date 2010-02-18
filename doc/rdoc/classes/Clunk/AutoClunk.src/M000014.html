@@ -5,16 +5,19 @@
 
 <html>
 <head>
-  <title>goes (Clunk::AutoClunk)</title>
+  <title>activate_awesomeness (Clunk::AutoClunk)</title>
   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
   <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
 </head>
 <body class="standalone-code">
-  <pre>    <span class="ruby-comment cmt"># File lib/auto_clunk.rb, line 54</span>
-54:     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">goes</span> <span class="ruby-identifier">name</span>
-55:       <span class="ruby-identifier">at_exit</span> {
-56:         <span class="ruby-identifier">eval</span>(<span class="ruby-node">&quot;#{name.to_s}.new.activate_awesomeness&quot;</span>)
-57:       }
-58:     <span class="ruby-keyword kw">end</span></pre>
+  <pre>    <span class="ruby-comment cmt"># File lib/auto_clunk.rb, line 48</span>
+48:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">activate_awesomeness</span>
+49:       <span class="ruby-keyword kw">begin</span>
+50:         <span class="ruby-ivar">@cli</span>.<span class="ruby-identifier">go</span>
+51:       <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">ArgumentError</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span>
+52:         <span class="ruby-identifier">puts</span> <span class="ruby-identifier">e</span>
+53:         <span class="ruby-keyword kw">retry</span>
+54:       <span class="ruby-keyword kw">end</span>
+55:     <span class="ruby-keyword kw">end</span></pre>
 </body>
 </html>
