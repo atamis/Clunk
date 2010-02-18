@@ -5,7 +5,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Class: Clunk::CommandList</title>
+  <title>Class: Clunk::AutoClunk</title>
   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
   <meta http-equiv="Content-Script-Type" content="text/javascript" />
   <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
@@ -50,13 +50,13 @@
         <table class="header-table">
         <tr class="top-aligned-row">
           <td><strong>Class</strong></td>
-          <td class="class-name-in-header">Clunk::CommandList</td>
+          <td class="class-name-in-header">Clunk::AutoClunk</td>
         </tr>
         <tr class="top-aligned-row">
             <td><strong>In:</strong></td>
             <td>
-                <a href="../../files/lib/clunk_rb.html">
-                lib/clunk.rb
+                <a href="../../files/lib/auto_clunk_rb.html">
+                lib/auto_clunk.rb
                 </a>
         <br />
             </td>
@@ -65,7 +65,9 @@
         <tr class="top-aligned-row">
             <td><strong>Parent:</strong></td>
             <td>
-                Object
+                <a href="CommandList.html">
+                CommandList
+               </a>
             </td>
         </tr>
         </table>
@@ -80,10 +82,22 @@
 
     <div id="description">
       <p>
-A command list class with some standard commands already in it. Also
-includes a method, self.cli_attr_accessor, which acts like attr_accessor,
-but instead of returning the variable on klass.variable, it puts it. It is
-suggested you extend this class to add more commands.
+A simple method of using <a href="../Clunk.html">Clunk</a>. Example:
+</p>
+<pre>
+  require 'auto_clunk'
+
+  Clunk::AutoClunk.goes :TestingAutoClunk
+
+  class TestingAutoClunk &lt; Clunk::AutoClunk
+    def juliet
+      puts &quot;Do not deny to him that you love me.&quot;
+    end
+  end
+</pre>
+<p>
+If you run this, it should allow you to type in &quot;juliet&quot; and get
+something back. Isn&#8216;t it awesome?
 </p>
 
     </div>
@@ -95,11 +109,10 @@ suggested you extend this class to add more commands.
       <h3 class="section-bar">Methods</h3>
 
       <div class="name-list">
-      <a href="#M000006">cli_attr_accessor</a>&nbsp;&nbsp;
-      <a href="#M000008">method_missing</a>&nbsp;&nbsp;
-      <a href="#M000004">new</a>&nbsp;&nbsp;
-      <a href="#M000007">nil</a>&nbsp;&nbsp;
-      <a href="#M000005">reload</a>&nbsp;&nbsp;
+      <a href="#M000013">activate_awesomeness</a>&nbsp;&nbsp;
+      <a href="#M000012">create_cli_from_prompt</a>&nbsp;&nbsp;
+      <a href="#M000014">goes</a>&nbsp;&nbsp;
+      <a href="#M000011">new</a>&nbsp;&nbsp;
       </div>
     </div>
 
@@ -121,88 +134,87 @@ suggested you extend this class to add more commands.
     <div id="methods">
       <h3 class="section-bar">Public Class methods</h3>
 
-      <div id="method-M000006" class="method-detail">
-        <a name="M000006"></a>
+      <div id="method-M000014" class="method-detail">
+        <a name="M000014"></a>
 
         <div class="method-heading">
-          <a href="CommandList.src/M000006.html" target="Code" class="method-signature"
-            onclick="popupCode('CommandList.src/M000006.html');return false;">
-          <span class="method-name">cli_attr_accessor</span><span class="method-args">(*variables)</span>
+          <a href="AutoClunk.src/M000014.html" target="Code" class="method-signature"
+            onclick="popupCode('AutoClunk.src/M000014.html');return false;">
+          <span class="method-name">goes</span><span class="method-args">(name)</span>
           </a>
         </div>
       
         <div class="method-description">
           <p>
-An attr_accessor child that puts the variable instead of returning it when
-you call klass.variable.
+The method used to alert the module to the name of your class. Uses at_exit
+to do it&#8216;s magic.
 </p>
         </div>
       </div>
 
-      <div id="method-M000004" class="method-detail">
-        <a name="M000004"></a>
+      <div id="method-M000011" class="method-detail">
+        <a name="M000011"></a>
 
         <div class="method-heading">
-          <a href="CommandList.src/M000004.html" target="Code" class="method-signature"
-            onclick="popupCode('CommandList.src/M000004.html');return false;">
+          <a href="AutoClunk.src/M000011.html" target="Code" class="method-signature"
+            onclick="popupCode('AutoClunk.src/M000011.html');return false;">
           <span class="method-name">new</span><span class="method-args">()</span>
           </a>
         </div>
       
         <div class="method-description">
+          <p>
+Generaly, you don&#8216;t call this. However, you might override. See <a
+href="AutoClunk.html#M000012">create_cli_from_prompt</a> for information.
+</p>
         </div>
       </div>
 
       <h3 class="section-bar">Public Instance methods</h3>
 
-      <div id="method-M000008" class="method-detail">
-        <a name="M000008"></a>
+      <div id="method-M000013" class="method-detail">
+        <a name="M000013"></a>
 
         <div class="method-heading">
-          <a href="CommandList.src/M000008.html" target="Code" class="method-signature"
-            onclick="popupCode('CommandList.src/M000008.html');return false;">
-          <span class="method-name">method_missing</span><span class="method-args">(symbol, *args)</span>
+          <a href="AutoClunk.src/M000013.html" target="Code" class="method-signature"
+            onclick="popupCode('AutoClunk.src/M000013.html');return false;">
+          <span class="method-name">activate_awesomeness</span><span class="method-args">()</span>
           </a>
         </div>
       
         <div class="method-description">
           <p>
-This method is envoked when a command is not found.
+Run the <a href="CLI.html">CLI</a>. Name choosen for uniqueness. You
+won&#8216;t need to use this.
 </p>
         </div>
       </div>
 
-      <div id="method-M000007" class="method-detail">
-        <a name="M000007"></a>
+      <div id="method-M000012" class="method-detail">
+        <a name="M000012"></a>
 
         <div class="method-heading">
-          <a href="CommandList.src/M000007.html" target="Code" class="method-signature"
-            onclick="popupCode('CommandList.src/M000007.html');return false;">
-          <span class="method-name">nil</span><span class="method-args">()</span>
+          <a href="AutoClunk.src/M000012.html" target="Code" class="method-signature"
+            onclick="popupCode('AutoClunk.src/M000012.html');return false;">
+          <span class="method-name">create_cli_from_prompt</span><span class="method-args">(p)</span>
           </a>
         </div>
       
         <div class="method-description">
           <p>
-This is run when the person just hits enter, without typing anything
+Use this to make an <a href="AutoClunk.html">AutoClunk</a> instance with
+your own prompt. How to use:
 </p>
-        </div>
-      </div>
+<pre>
+  require 'auto_clunk'
 
-      <div id="method-M000005" class="method-detail">
-        <a name="M000005"></a>
-
-        <div class="method-heading">
-          <a href="CommandList.src/M000005.html" target="Code" class="method-signature"
-            onclick="popupCode('CommandList.src/M000005.html');return false;">
-          <span class="method-name">reload</span><span class="method-args">()</span>
-          </a>
-        </div>
-      
-        <div class="method-description">
-          <p>
-Relode the file. Basically, run it again.
-</p>
+  Clunk::AutoClunk.goes :PromptAutoClunkTest
+  class PromptAutoClunkTest &lt; Clunk::AutoClunk
+    def initialize # Override initialize
+      create_cli_from_prompt('This is my awesome prompt: ')
+    end
+  end
+</pre>
         </div>
       </div>
 
