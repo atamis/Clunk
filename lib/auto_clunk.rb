@@ -24,7 +24,9 @@ module Clunk
       @cli = Clunk::CLI.new('>>: ', self)
     end
 
-    # Use this to make an AutoClunk instance with your own prompt. How to use:
+    # Use this to make an AutoClunk instance with your own prompt. 
+    # AutoClunk#prompt is an alias. How to use:
+    # 
     #   require 'auto_clunk'
     #
     #   Clunk::AutoClunk.goes :PromptAutoClunkTest
@@ -36,6 +38,9 @@ module Clunk
     def create_cli_from_prompt(p)
       @cli = Clunk.CLI.new(p, self)
     end
+
+
+    alias_method :prompt, :create_cli_from_prompt
 
     # Run the CLI. Name choosen for uniqueness. You won't need to use this. This includes
     # some redimentry exception handling for ArgumentError so you are safe from imporoper 
