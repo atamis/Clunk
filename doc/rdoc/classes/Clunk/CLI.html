@@ -176,7 +176,9 @@ screen, and a command object. Can be anything, but needs a send method.
       
         <div class="method-description">
           <p>
-Call this, probably in a begin block, to start up the interface.
+Call this, probably in a begin block, to start up the interface. It will
+call CLI#input to get input, and will send the command, and the rest of the
+string, to the @commands object.
 </p>
         </div>
       </div>

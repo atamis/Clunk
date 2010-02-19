@@ -18,7 +18,9 @@ module Clunk
       @every_time = Proc.new {}
     end
 
-    # Call this, probably in a begin block, to start up the interface.
+    # Call this, probably in a begin block, to start up the interface. It will
+    # call CLI#input to get input, and will send the command, and the rest of
+    # the string, to the @commands object.
     def go
       loop do
         print @prompt
