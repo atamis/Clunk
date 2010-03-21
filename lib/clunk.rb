@@ -1,10 +1,12 @@
 
+require 'readline'
+
 # A module to simplyfy the making of command line interfaces.
 module Clunk
 
   # The CLI class. Controls everything in clunk.
   class CLI
-    attr_accessor :prompt, :commands, :input, :every_time
+    attr_accessor :prompt, :commands, :input, :every_time, :readline
 
     # Make a new CLI object. The params are a prompt, which only needs to be
     # printed to the screen, and a command object. Can be anything, but needs a
@@ -16,22 +18,40 @@ module Clunk
         gets.chomp
       end
       @every_time = Proc.new {}
-    end
+			@readline = true
+			
+		end
 
-    # Call this, probably in a begin block, to start up the interface. It will
-    # call CLI#input to get input, and will send the command, and the rest of
-    # the string, to the @commands object.
+		# Call this, probably in a begin block, to start up the interface. It will
+		# call CLI#input to get input, and will send the command, and the rest of
+		# the string, to the @commands object.
     def go
-      loop do
-        print @prompt
-        answer = @input.call.split(" ")
-        command = answer.shift
-        if command == nil
-          command = "nil"
-        end
-        command = command.to_sym
-        @commands.send(command, *answer)
-      end
+			if @readline
+				stty_save = `stty -g`.chomp
+				begin
+					while line = Readline.readline(prompt, true)
+						answer = line.split(" ")
+						command = answer.shift
+						command = "nil" if command == nil
+						command = command.to_sym
+						@commands.send(command, *answer)
+					end
+				rescue Interrupt => e
+					system('stty', stty_save) # Restore
+					exit
+				end
+			else
+      	loop do
+      	  print @prompt
+      	  answer = @input.call.split(" ")
+      	  command = answer.shift
+      	  if command == nil
+      	    command = "nil"
+      	  end
+      	  command = command.to_sym
+      	  @commands.send(command, *answer)
+      	end
+		end
     end
   end
 
@@ -40,8 +60,8 @@ module Clunk
   # of returning the variable on klass.variable, it puts it. It is suggested you
   # extend this class to add more commands.
   class CommandList
-    def initialize
-
+    def initialize()
+			@history = history
     end
 
     # Relode the file. Basically, run it again.
@@ -49,6 +69,8 @@ module Clunk
       puts "Reloading..."
       system("ruby #{$0}")
     end
+
+
 
     # An attr_accessor child that puts the variable instead of returning it when
     # you call klass.variable.
