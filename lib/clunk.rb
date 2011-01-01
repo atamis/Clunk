@@ -1,6 +1,7 @@
 
 # A module to simplyfy the making of command line interfaces.
 module Clunk
+    VERSION = "0.5"
 
   # The CLI class. Controls everything in clunk.
   class CLI

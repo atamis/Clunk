@@ -58,7 +58,7 @@ module Clunk
     # at_exit to do it's magic. I bet there are better ways of doing this.
     def self.goes name
       at_exit {
-        eval("#{name.to_s}.new.activate_awesomeness")
+        eval("#{name.to_s}").new.activate_awesomeness
       }
     end
   end
