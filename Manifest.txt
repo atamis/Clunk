@@ -5,3 +5,5 @@ README.txt
 Rakefile
 lib/clunk.rb
 lib/auto_clunk.rb
+example/clunk_example.rb
+example/auto_clunk_example.rb
